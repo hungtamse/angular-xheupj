@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { products } from "../products";
 
 @Component({
@@ -7,8 +7,19 @@ import { products } from "../products";
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.css"]
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
   products = products;
+  product;
+
+  constructor(private route: ActivatedRoute) {
+    // TODO
+  }
+
+  ngOnInit() {
+    const routeParams = this.route.snapshot.paramMap;
+    const productIdFromRoute = Number(routeParams.get("productId"));
+    this.product = products.find(product => product.id === productIdFromRoute);
+  }
 
   share() {
     window.alert("The product has been shared!");
