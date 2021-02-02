@@ -15,11 +15,7 @@ export class ProductListComponent implements OnInit {
     // TODO
   }
 
-  ngOnInit() {
-    const routeParams = this.route.snapshot.paramMap;
-    const productIdFromRoute = Number(routeParams.get("productId"));
-    this.product = products.find(product => product.id === productIdFromRoute);
-  }
+  ngOnInit() {}
 
   share() {
     window.alert("The product has been shared!");
